@@ -46,7 +46,11 @@ namespace IsoMaker
             foreach (FileInfo file in folder.GetFiles())
             {
                 string fileFullPath = file.FullName;
-                string fileOnIso = fileFullPath.TrimStart(home.FullName.ToCharArray());
+                string fileOnIso = fileFullPath.Split(home.FullName + '\\')[1];
+
+                // The code below sometimes trims too much and caues conflicts.
+                // string fileOnIso = fileFullPath.TrimStart(home.FullName.ToCharArray());
+                
                 output.Add(fileOnIso, file.FullName);
             }
 
